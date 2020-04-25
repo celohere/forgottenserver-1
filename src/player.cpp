@@ -841,8 +841,13 @@ void Player::sendPing()
 				client->logout(true, true);
 			} else {
 				g_game.removeCreature(this, true);
+				g_game.addMagicEffect(getPosition(), CONST_ME_POFF);
 			}
 		}
+	}
+		if (canLogout() && !hasCondition(CONDITION_INFIGHT) && !client) {
+		g_game.removeCreature(this, true);
+		g_game.addMagicEffect(getPosition(), CONST_ME_POFF);
 	}
 }
 
